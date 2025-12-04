@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ВГУВТ - Личный кабинет</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#0d68b5">
+</head>
+<body>
+    <!-- Контейнер для проверки авторизации -->
+    <div id="authCheck" style="display: none;"></div>
+
+    <div class="dashboard-container">
+        <!-- Шапка личного кабинета -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <div class="back-home">
+                    <a href="index.html" class="back-link">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Выйти</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="dashboard-logo">ВГУВТ</div>
+                <div class="dashboard-subtitle">Личный кабинет</div>
+            </div>
+            
+            <div class="header-right">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="currentUser">Пользователь</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="dashboard-main">
+            <div class="welcome-card">
+                <div class="welcome-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h1 class="welcome-title">Ваш уникальный код доступа</h1>
+                <p class="welcome-text">Используйте этот код для идентификации в системе</p>
+            </div>
+
+            <!-- Генератор кода -->
+            <div class="code-generator">
+                <div class="code-display">
+                    <div class="code-value" id="accessCode">--- ---</div>
+                    <div class="code-label">Код доступа</div>
+                </div>
+
+                <div class="code-info">
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div class="info-content">
+                            <div class="info-label">Пользователь</div>
+                            <div class="info-value" id="userName">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <div class="info-content">
+                            <div class="info-label">Дата генерации</div>
+                            <div class="info-value" id="generationDate">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="info-content">
+                            <div class="info-label">Действителен до</div>
+                            <div class="info-value" id="expiryDate">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="info-content">
+                            <div class="info-label">Статус кода</div>
+                            <div class="info-value status-active">Активен</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-actions">
+                    <button id="generateCode" class="btn-generate">
+                        <i class="fas fa-sync-alt"></i> Сгенерировать новый код
+                    </button>
+                    
+                    <button id="copyCode" class="btn-copy">
+                        <i class="fas fa-copy"></i> Копировать код
+                    </button>
+                </div>
+            </div>
+
+            <!-- История кодов -->
+            <div class="history-section">
+                <h3 class="section-title">
+                    <i class="fas fa-history"></i> История кодов
+                </h3>
+                
+                <div class="history-list" id="codeHistory">
+                    <!-- История будет добавлена через JavaScript -->
+                    <div class="history-empty">
+                        <i class="fas fa-code"></i>
+                        <p>Здесь будет отображаться история ваших кодов</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Инструкция -->
+            <div class="instruction-section">
+                <h3 class="section-title">
+                    <i class="fas fa-info-circle"></i> Инструкция
+                </h3>
+                
+                <div class="instruction-content">
+                    <div class="instruction-item">
+                        <div class="instruction-icon">1</div>
+                        <div class="instruction-text">
+                            <h4>Использование кода</h4>
+                            <p>Предъявите этот код при входе в корпуса университета</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-icon">2</div>
+                        <div class="instruction-text">
+                            <h4>Срок действия</h4>
+                            <p>Каждый код действителен в течение 24 часов</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-icon">3</div>
+                        <div class="instruction-text">
+                            <h4>Безопасность</h4>
+                            <p>Не передавайте код третьим лицам</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Футер -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p class="copyright">© 2025 ВГУВТ. Система управления доступом.</p>
+                <p class="version">Версия: Бета 2.0</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Модальное окно подтверждения -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Подтверждение</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Вы уверены, что хотите сгенерировать новый код? Старый код будет деактивирован.</p>
+            </div>
+            <div class="modal-actions">
+                <button id="confirmCancel" class="btn-cancel">Отмена</button>
+                <button id="confirmGenerate" class="btn-confirm">Сгенерировать</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="notification" class="notification">
+        <div class="notification-content success">
+            <i class="fas fa-check-circle"></i>
+            <div class="notification-text">
+                <h3>Успешно!</h3>
+                <p id="notificationMessage">Код скопирован</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

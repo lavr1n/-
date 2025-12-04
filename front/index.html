@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ВГУВТ - Вход</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#0d68b5">
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Шапка -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-text">ВГУВТ</div>
+                <div class="logo-subtitle">Волжский государственный университет водного транспорта</div>
+            </div>
+            <div class="version">Бета</div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="main-content">
+            <div class="welcome-section">
+                <div class="welcome-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h1 class="welcome-title">Вход в систему</h1>
+                <p class="welcome-text">Введите логин и пароль для доступа</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username" class="form-label">
+                        <i class="fas fa-user"></i> Логин
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Введите ваш логин"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-key"></i> Пароль
+                    </label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Введите ваш пароль"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <button type="button" id="togglePassword" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </button>
+            </form>
+        </div>
+
+        <!-- Футер -->
+        <div class="footer">
+            <p class="copyright">© 2025 ВГУВТ. Все права защищены.</p>
+            <p class="support">Техническая поддержка: support@vguvt.ru</p>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="notification" class="notification">
+        <div class="notification-content success">
+            <i class="fas fa-check-circle"></i>
+            <div class="notification-text">
+                <h3>Вход выполнен</h3>
+                <p>Перенаправление в личный кабинет...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="errorNotification" class="notification">
+        <div class="notification-content error">
+            <i class="fas fa-exclamation-circle"></i>
+            <div class="notification-text">
+                <h3>Ошибка входа</h3>
+                <p id="errorMessage">Неверный логин или пароль</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
